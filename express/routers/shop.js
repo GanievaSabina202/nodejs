@@ -6,7 +6,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/esya', (req, res) => {
-    let name = req.query.name
+    // let name = req.query.name
     res.send(`Store item is ${name}`);
 });
 
