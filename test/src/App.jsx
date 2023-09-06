@@ -4,13 +4,15 @@ import axios from 'axios';
 function App() {
 
   const [data, setData] = useState([]);
+  const [error, setError] = useState('');
+
 
   const getData = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/task');
+      const response = await axios.get('http://localhost:4000/task');
       setData(response.data.getData);
     } catch (error) {
-      console.log(error);
+      setError(error.response.data.msg);
     }
   }
 
@@ -24,9 +26,10 @@ function App() {
     <>
       <div>
         {
-          data.map((item) => (
+          data.length > 0 ? data.map((item) => (
             <h1 key={item.id}>{item.name}</h1>
-          ))
+          )) :
+            <p>{error}</p>
         }
       </div>
     </>
